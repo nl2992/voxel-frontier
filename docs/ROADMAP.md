@@ -16,15 +16,16 @@ Phase status against [SPEC.md](SPEC.md) §27. Each loop iteration updates this f
 
 ## TODO (priority order)
 
-1. **P0** Project boot: monorepo workspaces, Vite client app, vitest, tsconfig, lint.
-2. **P0** Shared package: math utils, coordinate conversion, block registry loading from `data/blocks/`.
-3. **P0** Chunk data model (16×16×128, Uint16Array, flatten index) + unit tests.
-4. **P1** Renderer: Three.js scene, chunk meshing with face culling, placeholder texture atlas.
-5. **P1** First-person controller: pointer lock, AABB collision resolved per-axis, gravity, jump.
-6. **P1** Deterministic seeded terrain (heightmap + layers), determinism tests.
-7. **P2** Raycast block selection, break/place, remesh dirty chunks + neighbors.
-8. **P2** Hotbar + inventory operations with stack invariant tests.
+1. **P0** Client app boot: Vite + Three.js app in `apps/client`, canvas, render loop, crosshair.
+2. **P1** Renderer: chunk meshing with face culling, placeholder texture atlas (original textures).
+3. **P1** First-person controller: pointer lock, AABB collision resolved per-axis, gravity, jump.
+4. **P1** Deterministic seeded terrain (heightmap + layers), determinism tests.
+5. **P2** Raycast block selection, break/place, remesh dirty chunks + neighbors.
+6. **P2** Hotbar + inventory operations with stack invariant tests.
+7. **P2** Item registry (`data/items/`) mirroring the block registry pattern.
+8. **P3** Light data (sunlight/blocklight nibbles) on chunks — deferred from chunk model until lighting lands.
 
 ## Done
 
-(nothing yet — repo scaffold only)
+- 2026-06-11 Project boot: npm workspaces monorepo, TypeScript strict base config, vitest 3.
+- 2026-06-11 `@voxel-frontier/shared`: vec3 math, coordinate conversion (world→block→chunk→local→index, negative-safe), chunk data model (16×16×128 Uint16Array, dirty flags, bounds-safe get/set), data-driven block registry loading `data/blocks/blocks.json` (25 blocks, air pinned to id 0, validation). 24 unit tests passing.
